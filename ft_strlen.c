@@ -6,7 +6,7 @@
 /*   By: bpole <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 11:58:50 by bpole             #+#    #+#             */
-/*   Updated: 2019/09/07 14:01:57 by bpole            ###   ########.fr       */
+/*   Updated: 2019/09/16 16:01:02 by bpole            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 size_t	ft_strlen(const char *s)
 {
-	size_t	i;
+	size_t	l;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	l = 0;
+	while (s[l])
+		l++;
+	return (l);
 }
