@@ -1,38 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bpole <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/14 11:41:12 by bpole             #+#    #+#             */
-/*   Updated: 2019/09/17 11:44:32 by bpole            ###   ########.fr       */
+/*   Created: 2019/09/17 15:35:06 by bpole             #+#    #+#             */
+/*   Updated: 2019/09/17 17:54:06 by bpole            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void const *content, size_t content_size)
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *))
 {
-	t_list	*res;
+	t_list	*first;
+	t_list	*temp;
+	t_list	*create;
+	t_list  *prev;
 
-	if (!(res = (t_list*)malloc(sizeof(t_list))))
+	first = NULL;
+	if (!lst || !f)
 		return (NULL);
-	if (!content)
+	while (lst)
 	{
-		res->content = NULL;
-		res->content_size = 0;
-	}
-	else
-	{
-		if (!(res->content = (void*)malloc(content_size)))
+		temp = f(lst);
+		if (!(create = ft_lstnew(temp->content, temp->content_size)))
 		{
-			free(res);
+			//ft_lstdel(&first, ft_bzero);
 			return (NULL);
 		}
-		ft_memcpy(res->content, content, content_size);
-		res->content_size = content_size;
+		if (!first)
+		{
+			first = create;
+			prev = create;
+		}
+		else
+			prev->next = create;
+		lst = lst->next;
 	}
-	res->next = NULL;
-	return (res);
+	return (first);
 }

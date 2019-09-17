@@ -6,7 +6,7 @@
 #    By: bpole <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/07 12:11:32 by bpole             #+#    #+#              #
-#    Updated: 2019/09/14 18:26:37 by bpole            ###   ########.fr        #
+#    Updated: 2019/09/17 15:50:12 by bpole            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,8 +71,10 @@ SRC = ft_strlen.c \
 	  ft_lstnew.c \
 	  ft_lstdel.c \
 	  ft_lstadd.c \
+	  ft_lstdelone.c \
+	  ft_lstmap.c \
+	  ft_lstiter.c \
 	  ft_create_elem.c \
-	  ft_list_push_back.c \
 
 OBJ = $(SRC:.c=.o)
 

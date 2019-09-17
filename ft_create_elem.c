@@ -6,7 +6,7 @@
 /*   By: bpole <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 18:04:33 by bpole             #+#    #+#             */
-/*   Updated: 2019/09/14 18:29:06 by bpole            ###   ########.fr       */
+/*   Updated: 2019/09/17 15:44:13 by bpole            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_list	*ft_create_elem(void *data)
 	if (!elem)
 		return (NULL);
 	elem->next = NULL;
-	elem->content = NULL;
+	elem->content = data;
 	elem->content_size = 0;
 	return (elem);
 }
