@@ -6,7 +6,7 @@
 /*   By: bpole <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 15:35:06 by bpole             #+#    #+#             */
-/*   Updated: 2019/09/17 17:54:06 by bpole            ###   ########.fr       */
+/*   Updated: 2019/09/26 17:01:32 by bpole            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,24 @@
 t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *))
 {
 	t_list	*first;
-	t_list	*temp;
-	t_list	*create;
-	t_list  *prev;
+	t_list	*tmp;
 
-	first = NULL;
 	if (!lst || !f)
 		return (NULL);
-	while (lst)
+	tmp = f(lst);
+	if (!tmp)
+		return (NULL);
+	first = tmp;
+	while (lst->next)
 	{
-		temp = f(lst);
-		if (!(create = ft_lstnew(temp->content, temp->content_size)))
+		lst = lst->next;
+		first->next = f(lst);
+		if (!first->next)
 		{
-			//ft_lstdel(&first, ft_bzero);
+			ft_lstdel(&tmp, ft_bzero);
 			return (NULL);
 		}
-		if (!first)
-		{
-			first = create;
-			prev = create;
-		}
-		else
-			prev->next = create;
-		lst = lst->next;
+		first = first->next;
 	}
-	return (first);
+	return (tmp);
 }

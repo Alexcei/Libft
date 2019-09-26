@@ -6,21 +6,26 @@
 /*   By: bpole <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/14 18:04:33 by bpole             #+#    #+#             */
-/*   Updated: 2019/09/17 15:44:13 by bpole            ###   ########.fr       */
+/*   Updated: 2019/09/26 17:25:49 by bpole            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_create_elem(void *data)
+void	ft_list_reverse(t_list **begin_list)
 {
-	t_list	*elem;
+	t_list	*privios;
+	t_list	*next;
+	t_list	*current;
 
-	elem = (t_list*)malloc(sizeof(t_list));
-	if (!elem)
-		return (NULL);
-	elem->next = NULL;
-	elem->content = data;
-	elem->content_size = 0;
-	return (elem);
+	privios = NULL;
+	current = *begin_list;
+	while (current)
+	{
+		next = current->next;
+		current->next = privios;
+		privios = current;
+		current = next;
+	}
+	*begin_list = privios;
 }
